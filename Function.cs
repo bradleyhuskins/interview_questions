@@ -24,59 +24,60 @@ namespace HelloWorld
 {
     public class Function : IHttpFunction
     {
+        private readonly Dictionary<string, List<string>> jokeCategories = new Dictionary<string, List<string>> {
+            ["animal"] = new List<string> {"Chuck Norris' cat doesn't ask to go outside. He asks the outside to come in."},
+            ["career"] = new List<string> {},
+            ["celebrity"] = new List<string> {},
+            ["dev"] = new List<string> {},
+            ["explicit"] = new List<string> {},
+            ["fashion"] = new List<string> {},
+            ["food"] = new List<string> {},
+            ["history"] = new List<string> {},
+            ["money"] = new List<string> {},
+            ["movie"] = new List<string> {},
+            ["music"] = new List<string> {},
+            ["political"] = new List<string> {},
+            ["religion"] = new List<string> {},
+            ["science"] = new List<string> {},
+            ["sport"] = new List<string> {},
+            ["travel"] = new List<string> {}
+        };
         /*
         public async Task HandleAsync(HttpContext context)
         {
-            List<string> categories = new List<string> {
-                "animal",
-                "career",
-                "celebrity",
-                "dev",
-                "explicit",
-                "fashion",
-                "food",
-                "history",
-                "money",
-                "movie",
-                "music",
-                "political",
-                "religion",
-                "science",
-                "sport",
-                "travel"
-            };
-
+            List<String> categories = new List<string>(jokeCategories.Keys);
             await context.Response.WriteAsync(JsonSerializer.Serialize(categories));
         }
         */
+        private readonly Random randomGenerator = new Random();
+        private string GetRandomCategory()
+        {
+            List<String> categoryKeys = new List<string>(jokeCategories.Keys);
+            int categoryBound = categoryKeys.Count-1;
+            int randomKeyIndex = randomGenerator.Next(0, categoryBound);
+            return categoryKeys[randomKeyIndex];
+        }
+        private string GetRandomJoke(string forCategory)
+        {
+            List<string> jokes = jokeCategories[forCategory];
+            int jokeBound = jokes.Count-1;
+            int randomIndex = randomGenerator.Next(0, jokeBound);
+            return jokes[randomIndex];
+        }
         public async Task HandleAsync(HttpContext context)
         {
-            Random _random = new Random();
-            Dictionary<string, List<string>> categories = new Dictionary<string, List<string>> {
-                ["animal"] = new List<string> {"Chuck Norris' cat doesn't ask to go outside. He asks the outside to come in."},
-                ["career"] = new List<string> {},
-                ["celebrity"] = new List<string> {},
-                ["dev"] = new List<string> {},
-                ["explicit"] = new List<string> {},
-                ["fashion"] = new List<string> {},
-                ["food"] = new List<string> {},
-                ["history"] = new List<string> {},
-                ["money"] = new List<string> {},
-                ["movie"] = new List<string> {},
-                ["music"] = new List<string> {},
-                ["political"] = new List<string> {},
-                ["religion"] = new List<string> {},
-                ["science"] = new List<string> {},
-                ["sport"] = new List<string> {},
-                ["travel"] = new List<string> {}
-            };
+            bool hasCategory = !String.IsNullOrEmpty(context.Request.Query["category"]);
+            string requestedCategory;
+            if (hasCategory)
+            {
+                requestedCategory = context.Request.Query["category"].ToString();
+            }
+            else
+            {
+                requestedCategory = GetRandomCategory();
+            }
 
-            string requestedCategory = context.Request.Query["category"].ToString();
-
-            List<string> jokes = categories[requestedCategory];
-            int jokeBound = jokes.Count-1;
-            int randomIndex = _random.Next(0, jokeBound);
-            String joke = jokes[randomIndex];
+            String joke = GetRandomJoke(requestedCategory);
 
             await context.Response.WriteAsync(joke);
         }
