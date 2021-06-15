@@ -25,22 +25,21 @@ namespace HelloWorld
     public class Function : IHttpFunction
     {
         private readonly Dictionary<string, List<string>> jokeCategories = new Dictionary<string, List<string>> {
-            ["animal"] = new List<string> {"Chuck Norris' cat doesn't ask to go outside. He asks the outside to come in."},
-            ["career"] = new List<string> {},
-            ["celebrity"] = new List<string> {},
-            ["dev"] = new List<string> {},
-            ["explicit"] = new List<string> {},
-            ["fashion"] = new List<string> {},
-            ["food"] = new List<string> {},
-            ["history"] = new List<string> {},
-            ["money"] = new List<string> {},
-            ["movie"] = new List<string> {},
-            ["music"] = new List<string> {},
-            ["political"] = new List<string> {},
-            ["religion"] = new List<string> {},
-            ["science"] = new List<string> {},
-            ["sport"] = new List<string> {},
-            ["travel"] = new List<string> {}
+            ["animal"] = new List<string> {"Chuck Norris once rode a nine foot grizzly bear through an automatic car wash, instead of taking a shower."},
+            ["career"] = new List<string> {"In the beginning there was nothing...then Chuck Norris Roundhouse kicked that nothing in the face and said \"Get a job\". That is the story of the universe."},
+            ["celebrity"] = new List<string> {"Chuck Norris smells what the Rock is cooking... because the Rock is Chuck Norris' personal chef."},
+            ["dev"] = new List<string> {"Chuck Norris went out of an infinite loop."},
+            ["fashion"] = new List<string> {"Chuck Norris does not follow fashion trends, they follow him. But then he turns around and punches them. Nobody follows Chuck Norris."},
+            ["food"] = new List<string> {"Chuck Norris drinks napalm to quell his heartburn."},
+            ["history"] = new List<string> {"After returning from World War 2 unscrathed, Bob Dole was congratulated by Chuck Norris with a handshake. The rest is history."},
+            ["money"] = new List<string> {"When Chuck Norris sends in his taxes, he sends blank forms and includes only a picture of himself, crouched and ready to attack. Chuck Norris has not had to pay taxes, ever."},
+            ["movie"] = new List<string> {"Scotty in Star Trek often says \"Ye cannae change the laws of physics.\" This is untrue. Chuck Norris can change the laws of physics. With his fists."},
+            ["music"] = new List<string> {"Chuck Norris shot the sheriff, but he round house kicked the deputy."},
+            ["political"] = new List<string> {"July 4th is Independence day. And the day Chuck Norris was born. Coincidence? I think not."},
+            ["religion"] = new List<string> {"Chuck Norris does not make new year resolutions the new year makes Chuck Norris resolutions."},
+            ["science"] = new List<string> {"Newton's Third Law is wrong: Although it states that for each action, there is an equal and opposite reaction, there is no force equal in reaction to a Chuck Norris roundhouse kick."},
+            ["sport"] = new List<string> {"Chuck Norris plays racquetball with a waffle iron and a bowling ball."},
+            ["travel"] = new List<string> {"For Spring Break '05, Chuck Norris drove to Madagascar, riding a chariot pulled by two electric eels."}
         };
         /*
         public async Task HandleAsync(HttpContext context)

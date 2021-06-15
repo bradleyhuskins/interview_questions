@@ -1,0 +1,2 @@
+Deployment:
+gcloud functions deploy function-1 --entry-point HelloWorld.Function --entry-point HelloWorld.Function --runtime dotnet3 --trigger-http --allow-unauthenticated
